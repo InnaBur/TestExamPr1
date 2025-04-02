@@ -82,7 +82,7 @@ public class Angabe03_TicTacToe {
 
     //Diese Methode lässt den Spieler Spalte und Reihe eingeben
     private static void spielerEingabe() {
-        System.out.println(spieler + "Wählen Sie eine Spalte aus: ");
+        System.out.println(spieler + "Wählen Sie eine Zeile aus: ");
         zeile = scanner.nextInt();
         System.out.println(spieler + "Wählen Sie eine Spalte aus: ");
         spalte = scanner.nextInt();
