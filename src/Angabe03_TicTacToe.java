@@ -18,6 +18,7 @@ public class Angabe03_TicTacToe {
 
     //char, das der Spieler verwendet
     static char spielerChar;
+    static int counter = 0;
 
     public static void main(String[] args) {
         //Sie koennen Ihren Code hier reinschreiben oder eigene Methoden erzeugen, bleibt Ihnen ueberlassen
@@ -43,14 +44,13 @@ public class Angabe03_TicTacToe {
                     break;
                 }
             }
-
-
         } while (!exit);
     }
 
     private static void exitUeberpruefung() {
 
-        //check Horizontal
+        //check Horizontal - wenn Felder in einer Reihe gleich sind und nicht gleich leeren Platz ' ',
+        // dann boolean exit ist true and loop in run Methode unterbrochen wird
         for (int i = 0; i < field.length; i++) {
             if ((field[i][0] == field[i][1]) && (field[i][0] == field[i][2]) && field[i][0] != ' ') {
                 System.out.println(spieler + ", Sie haben gewonnen!");
@@ -66,16 +66,21 @@ public class Angabe03_TicTacToe {
             }
         }
 
-        //check Diagonalle
-
+        //check Diagonale
         if (((field[0][0] == field[1][1]) && (field[0][0] == field[2][2]) && (field[0][0] != ' '))
                 || ((field[0][2] == field[1][1]) && (field[2][0] == field[0][2]) && (field[0][2] != ' '))) {
             System.out.println(spieler + " Du hast gewonnen");
             exit = true;
         }
 
+        //check Draw
+        if (counter == 9) {
+            exit = true;
+        }
     }
 
+
+    //Diese Methode lässt den Spieler Spalte und Reihe eingeben
     private static void spielerEingabe() {
         System.out.println(spieler + "Wählen Sie eine Spalte aus: ");
         zeile = scanner.nextInt();
@@ -91,6 +96,9 @@ public class Angabe03_TicTacToe {
     private static void updateField() {
         if (field[zeile - 1][spalte - 1] == ' ') {
             field[zeile - 1][spalte - 1] = spielerChar;
+
+            //counter erhoehen, wenn es neues char auf dem Feld erscheint
+            counter++;
         } else {
             System.out.println("-------Achtung!! Dieses Feld ist besetzt-----");
 
